@@ -1,0 +1,10 @@
+fastapi>=0.112
+uvicorn[standard]>=0.30
+pandas>=2.2
+scikit-learn>=1.5
+langdetect>=1.0.9
+transformers>=4.44
+torch>=2.3
+datasets>=2.20
+accelerate>=0.33
+sentencepiece>=0.2
