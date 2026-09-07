@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API = 'http://127.0.0.1:8000/api'
+const API = 'http://127.0.0.1:8001/api'
 const labels = { positive: ['+', 'Positive', 'positive'], negative: ['-', 'Negative', 'negative'], neutral: ['=', 'Neutral', 'neutral'] }
 const languages = [['en', 'English'], ['hi', 'Hindi'], ['mr', 'Marathi'], ['ta', 'Tamil'], ['bn', 'Bengali'], ['te', 'Telugu'], ['gu', 'Gujarati'], ['kn', 'Kannada'], ['ml', 'Malayalam'], ['pa', 'Punjabi'], ['or', 'Odia'], ['as', 'Assamese']]
 

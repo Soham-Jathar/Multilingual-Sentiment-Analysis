@@ -31,7 +31,7 @@ pip install -r backend\requirements.txt
 uvicorn backend.main:app --reload
 ```
 
-The API starts at `http://127.0.0.1:8000`. Reviews are processed only for the current result and are not saved.
+The API starts at `http://127.0.0.1:8001`. Reviews are processed only for the current result and are not saved.
 
 ### 2. Start the frontend
 

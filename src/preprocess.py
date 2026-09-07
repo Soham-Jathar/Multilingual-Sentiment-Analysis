@@ -19,6 +19,12 @@ LANGUAGE_NAMES = {
     "ta": "Tamil",
     "te": "Telugu",
     "bn": "Bengali",
+    "as": "Assamese",
+    "gu": "Gujarati",
+    "kn": "Kannada",
+    "ml": "Malayalam",
+    "or": "Odia",
+    "pa": "Punjabi",
     "fr": "French",
     "es": "Spanish",
     "de": "German",
@@ -38,18 +44,28 @@ def detect_language(text: str) -> tuple[str, str]:
     cleaned = clean_text(text)
     if len(cleaned) < 3:
         return "unknown", LANGUAGE_NAMES["unknown"]
-    script_ranges = {
-        "hi": r"[\u0900-\u097F]",  # Hindi/Marathi share Devanagari.
-        "ta": r"[\u0B80-\u0BFF]",
-        "te": r"[\u0C00-\u0C7F]",
-        "bn": r"[\u0980-\u09FF]",
+    # These Unicode blocks identify scripts reliably. Assamese and Bengali share
+    # a script, so distinctive Assamese letters are checked separately below.
+    script_blocks = {
+        "hi": (0x0900, 0x097F),  # Hindi/Marathi share Devanagari.
+        "pa": (0x0A00, 0x0A7F),
+        "gu": (0x0A80, 0x0AFF),
+        "or": (0x0B00, 0x0B7F),
+        "ta": (0x0B80, 0x0BFF),
+        "te": (0x0C00, 0x0C7F),
+        "kn": (0x0C80, 0x0CFF),
+        "ml": (0x0D00, 0x0D7F),
     }
-    for code, pattern in script_ranges.items():
-        if re.search(pattern, cleaned):
+    for code, (start, end) in script_blocks.items():
+        if any(start <= ord(character) <= end for character in cleaned):
             if code != "hi":
                 return code, LANGUAGE_NAMES[code]
             break
     else:
+        if re.search(r"[\u09F0\u09F1]", cleaned):  # ৰ / ৱ, Assamese letters
+            return "as", LANGUAGE_NAMES["as"]
+        if re.search(r"[\u0980-\u09FF]", cleaned):
+            return "bn", LANGUAGE_NAMES["bn"]
         if cleaned.isascii():
             return "en", LANGUAGE_NAMES["en"]
     if detect is None:
