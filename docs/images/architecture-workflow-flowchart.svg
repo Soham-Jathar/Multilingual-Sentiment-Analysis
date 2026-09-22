@@ -6,8 +6,8 @@
       <rect width="24" height="24" fill="#121414"/>
       <path d="M24 0H0V24" fill="none" stroke="#383b3b" stroke-width="1.5"/>
     </pattern>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
-      <path d="M0 0L10 5L0 10Z" fill="#747b86"/>
+    <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="13" refY="7" orient="auto">
+      <path d="M0 0L14 7L0 14Z" fill="#747b86"/>
     </marker>
     <style>
       .node { fill: #181a1a; stroke: #e8ebe9; stroke-width: 3; }
@@ -46,9 +46,9 @@
   <text x="540" y="677" class="caption">Clean and prepare the review text</text>
 
   <path d="M540 700V732H280" class="line"/>
-  <path d="M280 732V762" class="arrow"/>
+  <path d="M280 732V772" class="arrow"/>
   <path d="M540 732H800" class="line"/>
-  <path d="M800 732V762" class="arrow"/>
+  <path d="M800 732V772" class="arrow"/>
 
   <rect x="100" y="772" width="360" height="108" rx="18" class="node"/>
   <text x="280" y="810" class="tag">REQUIRED</text>
@@ -69,10 +69,10 @@
   <text x="540" y="1041" class="decision">toggle on?</text>
 
   <path d="M460 1023H280" class="line"/>
-  <path d="M280 1023V1130" class="arrow"/>
+  <path d="M280 1023V1140" class="arrow"/>
   <text x="305" y="1068" class="choice">YES</text>
   <path d="M620 1023H800" class="line"/>
-  <path d="M800 1023V1130" class="arrow"/>
+  <path d="M800 1023V1140" class="arrow"/>
   <text x="748" y="1068" class="choice">NO</text>
 
   <rect x="100" y="1140" width="360" height="105" rx="18" class="node"/>
