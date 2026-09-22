@@ -1,4 +1,4 @@
-# SentimentScope - Multilingual Sentiment Analysis
+# Multilingual Sentiment Analysis
 
 SentimentScope is a full-stack Deep Learning and NLP project that classifies a review as **Positive**, **Negative**, or **Neutral**. A user pastes a review in English or a supported Indian language; the application detects its language, predicts sentiment, and can optionally translate it to another supported language.
 
