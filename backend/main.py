@@ -137,7 +137,9 @@ def translate_text(text: str, language_code: str, target_code: str) -> tuple[str
                 **inputs,
                 forced_bos_token_id=translation_tokenizer.convert_tokens_to_ids(target_language),
                 max_new_tokens=96,
-                num_beams=1,
+                # Beam search considers several candidate translations before choosing one.
+                # Four beams improves fluency for Indic-to-Indic pairs at a modest speed cost.
+                num_beams=4,
                 do_sample=False,
                 use_cache=True,
             )

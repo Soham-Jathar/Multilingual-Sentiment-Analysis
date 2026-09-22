@@ -107,7 +107,7 @@ For the narrow English factual-question rule, the application intentionally retu
 
 ## Translation
 
-Translation is optional. The model is `facebook/nllb-200-distilled-600M`, where NLLB means **No Language Left Behind**. The first translation is slower because the translation model downloads and loads into memory. Later translations are faster while the backend remains running.
+Translation is optional. The model is `facebook/nllb-200-distilled-600M`, where NLLB means **No Language Left Behind**. The first translation is slower because the translation model downloads and loads into memory. Later translations are faster while the backend remains running. The application uses four-beam search to improve translation fluency, particularly for Indic-to-Indic pairs; this is slightly slower than greedy decoding but produces better candidate translations.
 
 Supported native-script languages are English, Assamese, Bengali, Gujarati, Hindi, Kannada, Malayalam, Marathi, Odia, Punjabi, Tamil, and Telugu. Translation can use any supported source and target language pair.
 
