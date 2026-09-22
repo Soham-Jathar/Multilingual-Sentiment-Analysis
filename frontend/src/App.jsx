@@ -28,7 +28,7 @@ export default function App() {
       const response = await fetch(`${API}/analyze`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, mode, translation_enabled: translationEnabled, translation_target: targetLanguage }) })
       const body = await response.json()
       if (!response.ok) throw new Error(body.detail || 'Analysis could not be completed.')
-      setResult(body); setText('')
+      setResult(body)
     } catch (requestError) { setError(requestError.message.includes('Failed to fetch') ? 'The analysis service is not running. Start the backend first.' : requestError.message) } finally { setLoading(false) }
   }
   return <main>
