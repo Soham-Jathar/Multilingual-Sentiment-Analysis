@@ -1,4 +1,4 @@
-# SentimentScope — Multilingual Sentiment Analysis
+# Multilingual Sentiment Analysis
 
 A full-stack multilingual sentiment-analysis application. The React interface sends text to a FastAPI service that cleans the text, identifies the language, predicts sentiment, and returns the result without storing the review.
 
