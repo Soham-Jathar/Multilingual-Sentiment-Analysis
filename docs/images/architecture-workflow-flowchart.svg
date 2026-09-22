@@ -52,8 +52,8 @@
 
   <rect x="100" y="772" width="360" height="108" rx="18" class="node"/>
   <text x="280" y="810" class="tag">REQUIRED</text>
-  <text x="280" y="846" class="title">Language Detection</text>
-  <text x="280" y="869" class="caption">Detect input language</text>
+  <text x="280" y="842" class="title-small">Language Detection</text>
+  <text x="280" y="868" class="caption">Detect input language</text>
 
   <rect x="620" y="772" width="360" height="108" rx="18" class="node"/>
   <text x="800" y="810" class="tag">REQUIRED</text>
@@ -76,14 +76,12 @@
   <text x="748" y="1068" class="choice">NO</text>
 
   <rect x="100" y="1140" width="360" height="105" rx="18" class="node"/>
-  <text x="280" y="1178" class="tag">OPTIONAL</text>
-  <text x="280" y="1214" class="title-small">NLLB-200 Translation</text>
-  <text x="280" y="1236" class="caption">Translate to selected language</text>
+  <text x="280" y="1191" class="title-small">NLLB-200 Translation</text>
+  <text x="280" y="1221" class="caption">Translate to selected language</text>
 
   <rect x="620" y="1140" width="360" height="105" rx="18" class="node"/>
-  <text x="800" y="1180" class="tag">NO TRANSLATION</text>
-  <text x="800" y="1214" class="title-small">Use Original Review</text>
-  <text x="800" y="1236" class="caption">Keep submitted text unchanged</text>
+  <text x="800" y="1191" class="title-small">Use Original Review</text>
+  <text x="800" y="1221" class="caption">Keep submitted text unchanged</text>
 
   <path d="M280 1245V1280H540" class="line"/>
   <path d="M800 1245V1280H540" class="line"/>
