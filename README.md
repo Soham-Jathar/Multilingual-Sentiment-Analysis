@@ -16,19 +16,9 @@ The main model is a fine-tuned **XLM-RoBERTa** transformer. The project also inc
 
 ## Architecture
 
-```text
-React + Vite UI
-      |
-      v
-FastAPI API
-      |
-      +--> NLP preprocessing: text cleaning and language detection
-      +--> XLM-RoBERTa: sentiment prediction and confidence
-      +--> TF-IDF + Logistic Regression: optional baseline mode
-      +--> NLLB-200: optional translation
-```
+Every submitted review goes through language detection and sentiment classification. Translation is the only optional step and runs only when its toggle is enabled. Baseline mode replaces XLM-RoBERTa with TF-IDF + Logistic Regression for sentiment prediction.
 
-![SentimentScope architecture and workflow](docs/images/architecture-workflow.png)
+![SentimentScope required analysis and optional translation workflow](docs/images/architecture-workflow-v2.svg)
 
 ## Working Example
 
