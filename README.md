@@ -28,6 +28,8 @@ FastAPI API
       +--> NLLB-200: optional translation
 ```
 
+![SentimentScope architecture and workflow](docs/images/architecture-workflow.png)
+
 ## Project Structure
 
 ```text
