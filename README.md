@@ -30,6 +30,12 @@ FastAPI API
 
 ![SentimentScope architecture and workflow](docs/images/architecture-workflow.png)
 
+## Working Example
+
+![Marathi review analysed and translated to English](docs/images/working-result-marathi-to-english.png)
+
+The example shows native Marathi input, language detection, a Fine-tuned XLM-RoBERTa sentiment prediction, confidence, and optional Marathi-to-English translation.
+
 ## Project Structure
 
 ```text
