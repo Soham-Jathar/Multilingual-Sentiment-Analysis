@@ -1,77 +1,91 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1500" viewBox="0 0 1080 1500" role="img" aria-labelledby="title description">
-  <title id="title">SentimentScope workflow flowchart</title>
-  <desc id="description">A vertical workflow from user review to required language detection and sentiment analysis, followed by an optional translation decision.</desc>
+  <title id="title">SentimentScope workflow</title>
+  <desc id="description">A symmetrical vertical workflow: user review, interface, API, preprocessing, required language detection and sentiment classification, optional translation decision, and final result.</desc>
   <defs>
     <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <rect width="24" height="24" fill="#111313"/>
+      <rect width="24" height="24" fill="#121414"/>
       <path d="M24 0H0V24" fill="none" stroke="#383b3b" stroke-width="1.5"/>
     </pattern>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
       <path d="M0 0L12 6L0 12Z" fill="#e8ebe9"/>
     </marker>
     <style>
-      .flow { fill: none; stroke: #e8ebe9; stroke-width: 4; marker-end: url(#arrow); }
-      .merge { fill: none; stroke: #e8ebe9; stroke-width: 4; }
-      .node { fill: #171919; stroke: #e8ebe9; stroke-width: 3; }
-      .label { fill: #ffffff; font: 700 28px Arial, sans-serif; text-anchor: middle; }
-      .label-small { fill: #ffffff; font: 700 23px Arial, sans-serif; text-anchor: middle; }
+      .node { fill: #181a1a; stroke: #e8ebe9; stroke-width: 3; }
+      .line { fill: none; stroke: #e8ebe9; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+      .arrow { fill: none; stroke: #e8ebe9; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; marker-end: url(#arrow); }
+      .heading { fill: #ffffff; font: 700 38px Arial, sans-serif; text-anchor: middle; letter-spacing: 1px; }
+      .title { fill: #ffffff; font: 700 28px Arial, sans-serif; text-anchor: middle; }
+      .title-small { fill: #ffffff; font: 700 23px Arial, sans-serif; text-anchor: middle; }
+      .caption { fill: #c2c8c4; font: 18px Arial, sans-serif; text-anchor: middle; }
       .tag { fill: #a9e27b; font: 700 15px Arial, sans-serif; text-anchor: middle; letter-spacing: 2px; }
-      .caption { fill: #bfc5c1; font: 18px Arial, sans-serif; text-anchor: middle; }
-      .yesno { fill: #a9e27b; font: 700 18px Arial, sans-serif; }
+      .decision { fill: #ffffff; font: 700 21px Arial, sans-serif; text-anchor: middle; }
+      .choice { fill: #a9e27b; font: 700 18px Arial, sans-serif; }
     </style>
   </defs>
 
   <rect width="1080" height="1500" fill="url(#grid)"/>
-  <text x="540" y="66" class="label" style="font-size:38px">SENTIMENTSCOPE WORKFLOW</text>
-  <text x="540" y="101" class="caption">Required analysis, followed by optional translation</text>
+  <text x="540" y="64" class="heading">SENTIMENTSCOPE WORKFLOW</text>
+  <text x="540" y="98" class="caption">Required analysis with optional translation</text>
 
-  <rect x="360" y="140" width="360" height="95" rx="18" class="node"/>
-  <text x="540" y="180" class="label">User review</text>
-  <text x="540" y="211" class="caption">Text input</text>
-  <path d="M540 235V290" class="flow"/>
+  <rect x="340" y="130" width="400" height="96" rx="18" class="node"/>
+  <text x="540" y="174" class="title">User Review</text>
+  <text x="540" y="204" class="caption">Text submitted by the user</text>
+  <path d="M540 226V278" class="arrow"/>
 
-  <rect x="360" y="300" width="360" height="95" rx="18" class="node"/>
-  <text x="540" y="357" class="label">React + Vite UI</text>
-  <path d="M540 395V450" class="flow"/>
+  <rect x="340" y="288" width="400" height="96" rx="18" class="node"/>
+  <text x="540" y="346" class="title">React + Vite UI</text>
+  <path d="M540 384V436" class="arrow"/>
 
-  <rect x="360" y="460" width="360" height="95" rx="18" class="node"/>
-  <text x="540" y="517" class="label">FastAPI backend</text>
-  <path d="M540 555V610" class="flow"/>
+  <rect x="340" y="446" width="400" height="96" rx="18" class="node"/>
+  <text x="540" y="504" class="title">FastAPI Backend</text>
+  <path d="M540 542V594" class="arrow"/>
 
-  <rect x="360" y="620" width="360" height="95" rx="18" class="node"/>
-  <text x="540" y="662" class="label">NLP preprocessing</text>
-  <text x="540" y="693" class="caption">Clean and prepare text</text>
-  <path d="M540 715V765H250V815" class="flow"/>
-  <path d="M540 765H830V815" class="flow"/>
+  <rect x="340" y="604" width="400" height="96" rx="18" class="node"/>
+  <text x="540" y="646" class="title">NLP Preprocessing</text>
+  <text x="540" y="677" class="caption">Clean and prepare the review text</text>
 
-  <rect x="70" y="825" width="360" height="125" rx="18" class="node"/>
-  <text x="250" y="863" class="tag">REQUIRED</text>
-  <text x="250" y="905" class="label">Language detection</text>
-  <text x="250" y="933" class="caption">Detected language</text>
+  <path d="M540 700V732H280V762" class="arrow"/>
+  <path d="M540 732H800V762" class="arrow"/>
 
-  <rect x="650" y="825" width="360" height="125" rx="18" class="node"/>
-  <text x="830" y="863" class="tag">REQUIRED</text>
-  <text x="830" y="899" class="label-small">Fine-tuned XLM-RoBERTa</text>
-  <text x="830" y="928" class="caption">Sentiment + confidence</text>
+  <rect x="100" y="772" width="360" height="108" rx="18" class="node"/>
+  <text x="280" y="810" class="tag">REQUIRED</text>
+  <text x="280" y="846" class="title">Language Detection</text>
+  <text x="280" y="869" class="caption">Detect input language</text>
 
-  <path d="M250 950V990H540V1015" class="flow"/>
-  <path d="M830 950V990H540" class="merge"/>
+  <rect x="620" y="772" width="360" height="108" rx="18" class="node"/>
+  <text x="800" y="810" class="tag">REQUIRED</text>
+  <text x="800" y="842" class="title-small">Fine-tuned XLM-RoBERTa</text>
+  <text x="800" y="868" class="caption">Sentiment and confidence</text>
 
-  <polygon points="540,1015 620,1095 540,1175 460,1095" class="node"/>
-  <text x="540" y="1082" class="label-small">Translation</text>
-  <text x="540" y="1112" class="label-small">toggle on?</text>
+  <path d="M280 880V915H540" class="line"/>
+  <path d="M800 880V915H540" class="line"/>
+  <path d="M540 915V943" class="arrow"/>
 
-  <path d="M460 1095H245V1240" class="flow"/>
-  <text x="275" y="1165" class="yesno">YES</text>
-  <rect x="70" y="1250" width="350" height="105" rx="18" class="node"/>
-  <text x="245" y="1290" class="tag">OPTIONAL</text>
-  <text x="245" y="1324" class="label-small">NLLB-200 translation</text>
-  <path d="M420 1302H540V1382" class="flow"/>
+  <polygon points="540,943 620,1023 540,1103 460,1023" class="node"/>
+  <text x="540" y="1014" class="decision">Translation</text>
+  <text x="540" y="1041" class="decision">toggle on?</text>
 
-  <path d="M620 1095H835V1382H540" class="flow"/>
-  <text x="775" y="1165" class="yesno">NO</text>
+  <path d="M460 1023H280V1130" class="arrow"/>
+  <text x="305" y="1068" class="choice">YES</text>
+  <path d="M620 1023H800V1130" class="arrow"/>
+  <text x="748" y="1068" class="choice">NO</text>
 
-  <rect x="310" y="1390" width="460" height="85" rx="18" class="node"/>
-  <text x="540" y="1426" class="label">Analysis result</text>
-  <text x="540" y="1455" class="caption">Sentiment • confidence • language • translation if enabled</text>
+  <rect x="100" y="1140" width="360" height="105" rx="18" class="node"/>
+  <text x="280" y="1178" class="tag">OPTIONAL</text>
+  <text x="280" y="1214" class="title-small">NLLB-200 Translation</text>
+  <text x="280" y="1236" class="caption">Translate to selected language</text>
+
+  <rect x="620" y="1140" width="360" height="105" rx="18" class="node"/>
+  <text x="800" y="1180" class="tag">NO TRANSLATION</text>
+  <text x="800" y="1214" class="title-small">Use Original Review</text>
+  <text x="800" y="1236" class="caption">Keep submitted text unchanged</text>
+
+  <path d="M280 1245V1280H540" class="line"/>
+  <path d="M800 1245V1280H540" class="line"/>
+  <path d="M540 1280V1322" class="arrow"/>
+
+  <rect x="290" y="1332" width="500" height="108" rx="18" class="node"/>
+  <text x="540" y="1373" class="title">Final Analysis Result</text>
+  <text x="540" y="1405" class="caption">Sentiment • confidence • detected language</text>
+  <text x="540" y="1429" class="caption">Translation is included only when enabled</text>
 </svg>
