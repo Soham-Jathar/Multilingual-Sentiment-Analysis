@@ -1,83 +1,137 @@
-# SentimentScope — Multilingual Sentiment Analysis
+# SentimentScope - Multilingual Sentiment Analysis
 
-A full-stack multilingual sentiment-analysis application. The React interface sends text to a FastAPI service that cleans the text, identifies the language, predicts sentiment, and returns the result without storing the review.
+SentimentScope is a full-stack Deep Learning and NLP project that classifies a review as **Positive**, **Negative**, or **Neutral**. A user pastes a review in English or a supported Indian language; the application detects its language, predicts sentiment, and can optionally translate it to another supported language.
 
-## What is included
+The main model is a fine-tuned **XLM-RoBERTa** transformer. The project also includes a conventional **TF-IDF + Logistic Regression** baseline for comparison.
 
-- **React + Vite frontend:** responsive analysis workspace, result dashboard, and model-mode switch.
-- **FastAPI backend:** validated REST API, language detection, and model orchestration.
-- **NLP layer:** text cleaning, language identification, multilingual tokenization support, and a local TF-IDF baseline.
-- **Translation layer:** supported Indic-language reviews are also translated to English with NLLB-200, so a user can understand feedback written in another state's language.
-- **Deep-learning layer:** XLM-RoBERTa integration and a fine-tuning script for the supplied labelled dataset.
-- **No manual label/language fields:** the user enters only feedback; language and sentiment are inferred by the application.
+## Features
+
+- React + Vite frontend and FastAPI backend
+- Fine-tuned multilingual XLM-RoBERTa sentiment classifier
+- Positive, Negative, and Neutral predictions with confidence
+- Native-script language detection for supported Indian languages
+- Optional NLLB-200 translation between supported languages
+- TF-IDF + Logistic Regression baseline mode
+- No login, database, review history, or stored user reviews
 
 ## Architecture
 
 ```text
-React + Vite UI  ->  FastAPI API  ->  NLP preprocessing
-                                   ->  Local baseline or XLM-RoBERTa
+React + Vite UI
+      |
+      v
+FastAPI API
+      |
+      +--> NLP preprocessing: text cleaning and language detection
+      +--> XLM-RoBERTa: sentiment prediction and confidence
+      +--> TF-IDF + Logistic Regression: optional baseline mode
+      +--> NLLB-200: optional translation
 ```
 
-## Run locally
+## Project Structure
 
-Use two terminals from this project folder.
+```text
+backend/main.py                 FastAPI routes, model loading, translation orchestration
+src/preprocess.py               Text cleaning and language detection
+src/baseline.py                 TF-IDF + Logistic Regression baseline
+src/train_transformer.py        XLM-RoBERTa fine-tuning script
+src/prepare_indic_dataset.py    Dataset preparation script
+frontend/                       React + Vite user interface
+data/indic_sentiment_large.csv  Training dataset
+models/xlm-roberta-sentiment/   Fine-tuned model, stored with Git LFS
+```
 
-### 1. Start the backend
+## Run Locally
+
+### 1. Clone the project and download the model
+
+Git LFS is required because the fine-tuned model is large.
+
+```powershell
+git clone https://github.com/Soham-Jathar/Multilingual-Sentiment-Analysis.git
+cd Multilingual-Sentiment-Analysis
+git lfs install
+git lfs pull
+```
+
+If `git lfs` is not available, install Git LFS first and then reopen the terminal.
+
+### 2. Start the backend
+
+Open a PowerShell terminal in the project folder:
 
 ```powershell
 py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r backend\requirements.txt
-uvicorn backend.main:app --reload
+.\.venv\Scripts\python.exe -m pip install -r backend\requirements.txt
+.\.venv\Scripts\python.exe -m uvicorn backend.main:app --reload --port 8001
 ```
 
-The API starts at `http://127.0.0.1:8001`. Reviews are processed only for the current result and are not saved.
+The backend runs at `http://127.0.0.1:8001`.
 
-### 2. Start the frontend
+### 3. Start the frontend
+
+Open a second PowerShell terminal:
 
 ```powershell
 cd frontend
-npm install
-npm run dev
+npm.cmd install
+npm.cmd run dev
 ```
 
-Open the local address shown by Vite (normally `http://localhost:5173`).
+Open the Vite address shown in the terminal, normally `http://localhost:5173`.
 
-## Analysis modes
+## Analysis Modes and Toggles
 
-- **XLM-RoBERTa (default):** the app uses a fine-tuned XLM-RoBERTa model when available; otherwise it retrieves a pretrained multilingual XLM-RoBERTa sentiment model on first use. The initial download/loading step is slower; later analyses use the cached model.
-- **Baseline comparison:** cached local TF-IDF + Logistic Regression. It is retained only for comparing a conventional NLP baseline with the transformer in the project evaluation.
+| XLM-RoBERTa | Translation | Result |
+|---|---|---|
+| On | Off | Recommended: the fine-tuned XLM-RoBERTa model predicts sentiment. |
+| On | On | NLLB translates the review; XLM-RoBERTa predicts sentiment from the original review. |
+| Off | Off | The TF-IDF + Logistic Regression baseline predicts sentiment. |
+| Off | On | NLLB translates the review; the baseline predicts sentiment from the original review. |
 
-## Cross-language translation
+Confidence is the probability assigned to the selected sentiment class. It is useful as a model certainty estimate, not a guarantee that the prediction is correct.
 
-Users can select a translation target from the project's supported languages: English, Assamese, Bengali, Gujarati, Hindi, Kannada, Malayalam, Marathi, Odia, Punjabi, Tamil, and Telugu. The sentiment classifier still receives the original text, not the translated text. The translation model (`facebook/nllb-200-distilled-600M`) downloads only on its first translation request and is cached afterwards.
+## Translation
 
-## Fine-tune XLM-RoBERTa
+Translation is optional. The model is `facebook/nllb-200-distilled-600M`, where NLLB means **No Language Left Behind**. The first translation is slower because the translation model downloads and loads into memory. Later translations are faster while the backend remains running.
 
-Prepare a larger English + Indic dataset. This example includes English and every Indic language available in the project source:
+Supported native-script languages are English, Assamese, Bengali, Gujarati, Hindi, Kannada, Malayalam, Marathi, Odia, Punjabi, Tamil, and Telugu. Translation can use any supported source and target language pair.
+
+## Dataset and Training
+
+The included training file, `data/indic_sentiment_large.csv`, contains **12,500 labelled reviews**:
+
+- 11 Indian languages from AI4Bharat IndicSentiment: 500 Positive and 500 Negative examples per language
+- English Amazon reviews: 500 each for Positive, Negative, and Neutral
+- Total: 6,000 Positive, 6,000 Negative, and 500 Neutral examples
+
+To recreate the dataset:
 
 ```powershell
-python -m src.prepare_indic_dataset --include-english --languages as bn gu hi kn ml mr or pa ta te --per-label 0
+.\.venv\Scripts\python.exe -m src.prepare_indic_dataset --include-english --languages as bn gu hi kn ml mr or pa ta te --per-label 500
 ```
 
-Use `--per-label 0` to include every available labelled example for the selected languages. This requires more RAM, disk space, and training time.
-
-Then train XLM-RoBERTa on the exported data:
+To fine-tune the model:
 
 ```powershell
-python -m src.train_transformer --data data\indic_sentiment_large.csv --epochs 3 --batch-size 8
+.\.venv\Scripts\python.exe -m src.train_transformer --data data\indic_sentiment_large.csv --epochs 3 --batch-size 8
 ```
 
-This saves the trained model in `models/xlm-roberta-sentiment/`. Restart the backend afterwards; selecting **Use deep-learning model** in the interface then uses the saved model.
+Three epochs are sufficient for this mini project because XLM-RoBERTa is already pretrained on multilingual text. The training script evaluates every epoch and retains the checkpoint with the best validation F1-score.
 
-## API routes
+## API Routes
 
 | Method | Route | Purpose |
 |---|---|---|
-| `GET` | `/api/health` | Confirms the service is ready |
-| `POST` | `/api/analyze` | Creates an analysis from `{ text, mode }` |
-| `GET` | `/api/stats` | Returns saved-analysis totals by sentiment |
+| `GET` | `/api/health` | Confirms that the backend is running. |
+| `POST` | `/api/analyze` | Accepts review text and analysis options, then returns sentiment, confidence, language, and optional translation. |
 
-## Dataset note
+## Limitations
 
-`data/multilingual_sentiment.csv` contains a small, balanced demonstration dataset in six languages. It is enough to verify the full flow, but expand it with a larger, balanced, labelled dataset before reporting real-world performance metrics.
+- Native scripts are supported; Romanized or transliterated text such as `khup changla aahe` is not a project target.
+- Neutral examples are primarily English, so Neutral predictions for some Indian languages may be less reliable.
+- The first translation request requires the NLLB model to download, so internet access is needed once for that model.
+
+## Privacy
+
+The current application does not use a database, login system, or history feature. Reviews are processed only to produce the current result and are not stored.
