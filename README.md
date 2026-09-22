@@ -18,7 +18,7 @@ The main model is a fine-tuned **XLM-RoBERTa** transformer. The project also inc
 
 Every submitted review goes through language detection and sentiment classification. Translation is the only optional step and runs only when its toggle is enabled. Baseline mode replaces XLM-RoBERTa with TF-IDF + Logistic Regression for sentiment prediction.
 
-![SentimentScope required analysis and optional translation workflow](docs/images/architecture-workflow-v2.svg)
+![SentimentScope required analysis and optional translation workflow](docs/images/architecture-workflow-updated.png)
 
 ## Working Example
 
