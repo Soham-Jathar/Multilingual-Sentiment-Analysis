@@ -91,7 +91,19 @@ Open the Vite address shown in the terminal, normally `http://localhost:5173`.
 | Off | Off | The TF-IDF + Logistic Regression baseline predicts sentiment. |
 | Off | On | NLLB translates the review; the baseline predicts sentiment from the original review. |
 
-Confidence is the probability assigned to the selected sentiment class. It is useful as a model certainty estimate, not a guarantee that the prediction is correct.
+## Confidence Calculation
+
+For XLM-RoBERTa, the final classification layer produces one unnormalised score, called a **logit**, for each class: Negative, Neutral, and Positive. Softmax converts these scores into probabilities:
+
+```text
+p(class i) = exp(logit i) / sum(exp(all class logits))
+```
+
+The three probabilities add up to 1. The class with the largest probability is the sentiment prediction, and that same probability is shown as confidence. For example, probabilities of Negative `0.10`, Neutral `0.15`, and Positive `0.75` produce **Positive sentiment with 75% confidence**. The API receives this value as the transformer pipeline's `score`.
+
+When baseline mode is selected, Logistic Regression uses `predict_proba()` to produce the three class probabilities; the highest value is again shown as confidence. Confidence is a model certainty estimate, not a guarantee that the prediction is correct. Validation accuracy and F1-score measure overall model performance across many labelled examples and are different from confidence for one review.
+
+For the narrow English factual-question rule, the application intentionally returns Neutral with 100% confidence because the result is rule based, not a transformer probability.
 
 ## Translation
 
@@ -131,7 +143,7 @@ Three epochs are sufficient for this mini project because XLM-RoBERTa is already
 ## Limitations
 
 - Native scripts are supported; Romanized or transliterated text such as `khup changla aahe` is not a project target.
-- Neutral examples are primarily English, so Neutral predictions for some Indian languages may be less reliable.
+- **Neutral-data limitation:** Neutral examples are primarily English, so Neutral predictions for some Indian languages may be less reliable.
 - The first translation request requires the NLLB model to download, so internet access is needed once for that model.
 
 ## Privacy
