@@ -6,26 +6,27 @@
       <rect width="24" height="24" fill="#121414"/>
       <path d="M24 0H0V24" fill="none" stroke="#383b3b" stroke-width="1.5"/>
     </pattern>
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-      <path d="M0 0L8 4L0 8Z" fill="#e8ebe9"/>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#747b86"/>
     </marker>
     <style>
       .node { fill: #181a1a; stroke: #e8ebe9; stroke-width: 3; }
-      .line { fill: none; stroke: #e8ebe9; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
-      .arrow { fill: none; stroke: #e8ebe9; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; marker-end: url(#arrow); }
-      .heading { fill: #ffffff; font: 700 38px Arial, sans-serif; text-anchor: middle; letter-spacing: 1px; }
+      .line { fill: none; stroke: #747b86; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+      .arrow { fill: none; stroke: #747b86; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; marker-end: url(#arrow); }
+      .heading { fill: #09275f; font: 700 38px Arial, sans-serif; text-anchor: middle; letter-spacing: 1px; }
       .title { fill: #ffffff; font: 700 28px Arial, sans-serif; text-anchor: middle; }
       .title-small { fill: #ffffff; font: 700 23px Arial, sans-serif; text-anchor: middle; }
       .caption { fill: #c2c8c4; font: 18px Arial, sans-serif; text-anchor: middle; }
+      .subtitle { fill: #64707a; font: 18px Arial, sans-serif; text-anchor: middle; }
       .tag { fill: #a9e27b; font: 700 15px Arial, sans-serif; text-anchor: middle; letter-spacing: 2px; }
       .decision { fill: #ffffff; font: 700 21px Arial, sans-serif; text-anchor: middle; }
       .choice { fill: #a9e27b; font: 700 18px Arial, sans-serif; }
     </style>
   </defs>
 
-  <rect width="1080" height="1500" fill="url(#grid)"/>
+  <rect width="1080" height="1500" fill="#ffffff"/>
   <text x="540" y="64" class="heading">SENTIMENTSCOPE WORKFLOW</text>
-  <text x="540" y="98" class="caption">Required analysis with optional translation</text>
+  <text x="540" y="98" class="subtitle">Required analysis with optional translation</text>
 
   <rect x="340" y="130" width="400" height="96" rx="18" class="node"/>
   <text x="540" y="174" class="title">User Review</text>
@@ -44,8 +45,10 @@
   <text x="540" y="646" class="title">NLP Preprocessing</text>
   <text x="540" y="677" class="caption">Clean and prepare the review text</text>
 
-  <path d="M540 700V732H280V762" class="arrow"/>
-  <path d="M540 732H800V762" class="arrow"/>
+  <path d="M540 700V732H280" class="line"/>
+  <path d="M280 732V762" class="arrow"/>
+  <path d="M540 732H800" class="line"/>
+  <path d="M800 732V762" class="arrow"/>
 
   <rect x="100" y="772" width="360" height="108" rx="18" class="node"/>
   <text x="280" y="810" class="tag">REQUIRED</text>
@@ -65,9 +68,11 @@
   <text x="540" y="1014" class="decision">Translation</text>
   <text x="540" y="1041" class="decision">toggle on?</text>
 
-  <path d="M460 1023H280V1130" class="arrow"/>
+  <path d="M460 1023H280" class="line"/>
+  <path d="M280 1023V1130" class="arrow"/>
   <text x="305" y="1068" class="choice">YES</text>
-  <path d="M620 1023H800V1130" class="arrow"/>
+  <path d="M620 1023H800" class="line"/>
+  <path d="M800 1023V1130" class="arrow"/>
   <text x="748" y="1068" class="choice">NO</text>
 
   <rect x="100" y="1140" width="360" height="105" rx="18" class="node"/>
