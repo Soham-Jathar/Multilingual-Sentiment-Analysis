@@ -13,7 +13,7 @@
       .node { fill: #181a1a; stroke: #e8ebe9; stroke-width: 3; }
       .line { fill: none; stroke: #747b86; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
       .arrow { fill: none; stroke: #747b86; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; marker-end: url(#arrow); }
-      .heading { fill: #09275f; font: 700 38px Arial, sans-serif; text-anchor: middle; letter-spacing: 1px; }
+      .heading { fill: #ffffff; font: 700 38px Arial, sans-serif; text-anchor: middle; letter-spacing: 1px; }
       .title { fill: #ffffff; font: 700 28px Arial, sans-serif; text-anchor: middle; }
       .title-small { fill: #ffffff; font: 700 23px Arial, sans-serif; text-anchor: middle; }
       .caption { fill: #c2c8c4; font: 18px Arial, sans-serif; text-anchor: middle; }
@@ -24,7 +24,7 @@
     </style>
   </defs>
 
-  <rect width="1080" height="1500" fill="#ffffff"/>
+  <rect width="1080" height="1500" fill="#000000"/>
   <text x="540" y="64" class="heading">SENTIMENTSCOPE WORKFLOW</text>
   <text x="540" y="98" class="subtitle">Required analysis with optional translation</text>
 
