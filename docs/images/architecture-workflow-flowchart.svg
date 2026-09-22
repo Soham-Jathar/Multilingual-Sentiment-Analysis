@@ -42,8 +42,8 @@
   <path d="M540 542V594" class="arrow"/>
 
   <rect x="340" y="604" width="400" height="96" rx="18" class="node"/>
-  <text x="540" y="646" class="title">NLP Preprocessing</text>
-  <text x="540" y="677" class="caption">Clean and prepare the review text</text>
+  <text x="540" y="653" class="title">NLP Preprocessing</text>
+  <text x="540" y="680" class="caption">Clean and prepare the review text</text>
 
   <path d="M540 700V732H280" class="line"/>
   <path d="M280 732V772" class="arrow"/>
@@ -51,22 +51,22 @@
   <path d="M800 732V772" class="arrow"/>
 
   <rect x="100" y="772" width="360" height="108" rx="18" class="node"/>
-  <text x="280" y="810" class="tag">REQUIRED</text>
-  <text x="280" y="842" class="title-small">Language Detection</text>
-  <text x="280" y="868" class="caption">Detect input language</text>
+  <text x="280" y="805" class="tag">REQUIRED</text>
+  <text x="280" y="837" class="title-small">Language Detection</text>
+  <text x="280" y="863" class="caption">Detect input language</text>
 
   <rect x="620" y="772" width="360" height="108" rx="18" class="node"/>
-  <text x="800" y="810" class="tag">REQUIRED</text>
-  <text x="800" y="842" class="title-small">Fine-tuned XLM-RoBERTa</text>
-  <text x="800" y="868" class="caption">Sentiment and confidence</text>
+  <text x="800" y="805" class="tag">REQUIRED</text>
+  <text x="800" y="837" class="title-small">Fine-tuned XLM-RoBERTa</text>
+  <text x="800" y="863" class="caption">Sentiment and confidence</text>
 
   <path d="M280 880V915H540" class="line"/>
   <path d="M800 880V915H540" class="line"/>
   <path d="M540 915V943" class="arrow"/>
 
   <polygon points="540,943 620,1023 540,1103 460,1023" class="node"/>
-  <text x="540" y="1014" class="decision">Translation</text>
-  <text x="540" y="1041" class="decision">toggle on?</text>
+  <text x="540" y="1020" class="decision">Translation</text>
+  <text x="540" y="1047" class="decision">toggle on?</text>
 
   <path d="M460 1023H280" class="line"/>
   <path d="M280 1023V1140" class="arrow"/>
